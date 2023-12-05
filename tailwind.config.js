@@ -14,6 +14,8 @@ export default {
         icon_blue: "#42ADE2",
         icon_green: "#B4D6A4",
         delete_red: "#D24A4A",
+        dullwhite: "#D6D6D6",
+        shadedblue: "#0F2B55"
       },
     },
   },
