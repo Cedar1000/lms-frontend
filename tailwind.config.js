@@ -15,7 +15,10 @@ export default {
         icon_green: "#B4D6A4",
         delete_red: "#D24A4A",
         dullwhite: "#D6D6D6",
-        shadedblue: "#0F2B55"
+        shadedblue: "#0F2B55",
+        linecolor: "#353297",
+        borderpurple: "#197ED2",
+        assignmentpurple: "#67B6F8"
       },
     },
   },
