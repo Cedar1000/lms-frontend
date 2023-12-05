@@ -5,11 +5,13 @@ import waving from '../assets/wavingemoji.png'
 import progresscourse from '../assets/progresscourseicon.png'
 import Overview from '../components/Overview'
 import CourseOutline from "../components/CourseOutline";
+import Announcement from "../components/Announcement";
+import Assignments from "../components/Assignments";
 
 const Dashboard = () => {
   const [profile, setProfile] = useState({});
   const [coursesCount, setCoursesCount] = useState(0);
-  const [assignments, setAssignments] = useState([]);
+  // const [assignments, setAssignments] = useState([]);
 
   // useEffect(() => {
   //   const users = sessionStorage.getItem('user');
@@ -86,7 +88,7 @@ const Dashboard = () => {
         </div>
 
         <div>
-          <div className="flex justify-between flex-wrap items-start w-full mt-12">
+          <div className="flex justify-between flex-wrap gap-3 items-start w-full mt-12">
             <div className="space-y-3">
               <h1 className="text-2xl">All courses</h1>
               <p className="text-dullwhite">Upskill with our expertly selected courses</p>
@@ -96,7 +98,10 @@ const Dashboard = () => {
           <CourseOutline />
         </div>
 
-       
+        <div className="mt-12 flex gap-8 w-full flex-wrap">
+          <Announcement/>
+          <Assignments/>
+       </div>
       </main>
     </div>
   );
