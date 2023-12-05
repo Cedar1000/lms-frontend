@@ -43,7 +43,7 @@ const Overview = () => {
         
         <div className='w-full flex justify-between gap-y-4 flex-wrap'>
         {courseList.map((course, index) => (
-          <div key={index} className='flex justify-between border border-solid border-slate-300 w-64 px-3 py-2 rounded-3xl'>
+          <div key={index} className='flex justify-between border border-solid border-slate-300 w-full md:w-64 px-3 py-2 rounded-3xl'>
             <div className='flex gap-2'>
             <img src={course.courselogo} alt="Course Logo" />
             <h2>{course.coursename}</h2>    
