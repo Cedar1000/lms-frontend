@@ -7,6 +7,7 @@ import Overview from '../components/Overview'
 import CourseOutline from "../components/CourseOutline";
 import Announcement from "../components/Announcement";
 import Assignments from "../components/Assignments";
+import MainLayout from "./MainLayout";
 
 const Dashboard = () => {
   const [profile, setProfile] = useState({});
@@ -51,12 +52,10 @@ const Dashboard = () => {
   // }, []);
 
   return (
-    <div className="main-sec flex text-white min-h-screen">
-      <nav className="nav hidden md:block w-1/5 p-4 bg-primary_blue">
-        {/* Navigation content */}
-      </nav>
-
-      <main className="main w-full md:w-4/5 p-12 min-h-screen  bg-secondary_blue">
+    <MainLayout>
+        <div className="main-sec text-white min-h-screen">
+    
+      <main className="main w-full p-12 min-h-screen  bg-secondary_blue">
         <section className="nav-sec flex justify-between items-center mb-4">
           <h1 className="hidden text-2xl md:block">Dashboard</h1>
 
@@ -104,6 +103,7 @@ const Dashboard = () => {
        </div>
       </main>
     </div>
+   </MainLayout>
   );
 };
 
