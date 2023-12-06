@@ -5,6 +5,7 @@ import Login from "../pages/Login";
 import Dashboard from "../pages/Dashboard";
 import Settings from "../pages/Settings";
 import Courses from "../pages/Courses";
+import MainLayout from "../pages/MainLayout";
 
 const AppRouter = () => {
   return (
@@ -12,9 +13,11 @@ const AppRouter = () => {
       <Routes>
         <Route index path={`/`} element={<Login />} />
         <Route path={`/signup`} element={<Signup />} />
-        <Route path={`/dashboard`} element={<Dashboard />} />
-        <Route path={`/courses`} element={<Courses />} />
-        <Route path={`/settings`} element={<Settings />} />
+        <Route path={`/lms`} element={<MainLayout />}>
+        <Route path={`/lms/dashboard`} element={<Dashboard />} />
+        <Route path={`/lms/courses`} element={<Courses />} />
+        <Route path={`/lms/settings`} element={<Settings />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

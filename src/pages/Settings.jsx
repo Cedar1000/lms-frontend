@@ -7,7 +7,7 @@ import Button from "../components/elements/Button";
 
 const Settings = () => {
   return (
-    <MainLayout>
+    
       <div className="mb-[10.56rem] xl:px-12">
         <section className="flex justify-between items-center pt-7 px-5 mb-4">
           <h1 className="hidden text-2xl md:block">Edit Profile</h1>
@@ -82,7 +82,7 @@ const Settings = () => {
           </div>
         </section>
       </div>
-    </MainLayout>
+    
   );
 };
 
