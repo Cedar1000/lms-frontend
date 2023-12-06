@@ -40,7 +40,7 @@ const CourseOutline = () => {
   return (
     <div className='w-full flex justify-between gap-y-4 flex-grow-1 flex-wrap mt-12'>
       {courseLists.map((courses, index) => (
-        <div key={index} className='w-64 bg-shadedblue p-8 flex flex-col items-center rounded-lg shadow-full'>
+        <div key={index} className='w-full md:w-64 bg-shadedblue p-8 flex flex-col items-center rounded-lg shadow-full'>
           <h1 className='mb-6'>{courses.courseName}</h1>
           <div className='space-y-2'>
             <h2 className='flex items-center gap-3'>

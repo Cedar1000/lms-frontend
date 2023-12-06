@@ -18,7 +18,10 @@ export default {
         shadedblue: "#0F2B55",
         linecolor: "#353297",
         borderpurple: "#197ED2",
-        assignmentpurple: "#67B6F8"
+        assignmentpurple: "#67B6F8",
+        textpink: "#DFE4EB",
+        lightred: "#D24A4A",
+        lightpink: "#C9CFD8"
       },
     },
   },
