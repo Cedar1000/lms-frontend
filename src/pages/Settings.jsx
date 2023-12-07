@@ -7,20 +7,9 @@ import Button from "../components/elements/Button";
 
 const Settings = () => {
   return (
-    <MainLayout>
+    
       <div className="mb-[10.56rem] xl:px-12">
-        <section className="flex justify-between items-center pt-7 px-5 mb-4">
-          <h1 className="hidden text-2xl md:block">Edit Profile</h1>
-
-          <img src={logo} className="md:hidden" alt="logo" />
-          <h1 className="md:hidden font-bold border-[4px] border-[#0756CD] p-[0.39rem] w-fit rounded-full ">
-            JA
-          </h1>
-
-          <div className=" flex justify-center border-[#1F1D39] p-[0.59rem] w-fit rounded-[0.587rem] bg-icon_blue">
-            <img src={bell} alt="alert-icon" />
-          </div>
-        </section>
+        
         <div className="flex items-center gap-4 w-fit mx-5 mt-16">
           <h1 className=" font-bold border-[4px] border-[#0756CD] p-[0.39rem] w-fit rounded-full mx-auto">
             JA
@@ -82,7 +71,7 @@ const Settings = () => {
           </div>
         </section>
       </div>
-    </MainLayout>
+    
   );
 };
 

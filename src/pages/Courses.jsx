@@ -10,20 +10,9 @@ import UpcomingClasses from "../components/coursescomponents/UpcomingClasses";
 
 const Courses = () => {
   return (
-    <MainLayout>
-      <div className="pt-7 px-5">
-        <section className="flex justify-between items-center  mb-4">
-          <h1 className="hidden font-semibold text-2xl md:block">Course Management</h1>
-
-          <img src={logo} className="md:hidden" alt="logo" />
-          <h1 className="md:hidden font-bold border-[4px] border-[#0756CD] p-[0.39rem] w-fit rounded-full ">
-            JA
-          </h1>
-
-          <div className=" flex justify-center border-[#1F1D39] p-[0.59rem] w-fit rounded-[0.587rem] bg-icon_blue">
-            <img src={bell} alt="alert-icon" />
-          </div>
-        </section>
+    
+      <div className=" px-5">
+        
         <section className="mt-10">
           <div className="section-head">
           
@@ -50,7 +39,7 @@ const Courses = () => {
           <p className="load"></p>
         </section>
       </div>
-    </MainLayout>
+    
   );
 };
 
