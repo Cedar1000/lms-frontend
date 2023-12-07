@@ -52,27 +52,15 @@ const Dashboard = () => {
   // }, []);
 
   return (
-    <MainLayout>
+    
         <div className="main-sec text-white min-h-screen">
     
-      <main className="main w-full p-12 min-h-screen  bg-secondary_blue">
-        <section className="nav-sec flex justify-between items-center mb-4">
-          <h1 className="hidden text-2xl md:block">Dashboard</h1>
-
-          <img src={logo} className="md:hidden" alt="logo" />
-          <h1 className="md:hidden font-bold border-[4px] border-[#0756CD] p-[0.39rem] w-fit rounded-full ">
-            JA
-          </h1>
-
-
-          <div className=" flex justify-center border-[#1F1D39] p-[0.59rem] w-fit rounded-[0.587rem] bg-icon_blue">
-            <img src={bell} alt="alert-icon" />
-          </div>
-        </section>
+      <main className="main w-full p-12 min-h-screen  bg-primary_blue  md:bg-secondary_blue ">
+       
 
 
 
-        <div className="profile-icon mt-8">
+        <div className="profile-icon mt-4">
           
           <h1 className="user flex items-center text-2xl font-semibold gap-2">
             {profile.firstname} {profile.lastname}
@@ -103,7 +91,7 @@ const Dashboard = () => {
        </div>
       </main>
     </div>
-   </MainLayout>
+   
   );
 };
 

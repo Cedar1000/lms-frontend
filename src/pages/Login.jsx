@@ -27,7 +27,7 @@ const Login = () => {
     e.preventDefault();
     // Add your login logic here
     console.log('Form Data:', formData);
-    navigate('/dashboard');
+    navigate('/lms/dashboard');
     
   };
 

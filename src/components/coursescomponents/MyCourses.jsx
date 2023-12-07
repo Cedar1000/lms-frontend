@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 const MyCourses = () => {
 
     const coursesection = [
@@ -29,7 +31,9 @@ const MyCourses = () => {
                         <h3>{section.instructor}</h3>
                         </div>
                         <div className="flex justify-between mt-6 mb-3">
+                            <Link to={`/lms/lessons`}>
                         <button className="bg-inherit text-tertiary_blue">Continue</button>
+                            </Link>
                         <button className="bg-lightred px-6 py-1 text-xs rounded-sm">delete</button>
                         </div>
                     </div>
