@@ -7,8 +7,18 @@ import courses from "../assets/svg/courses.svg";
 import settings from "../assets/svg/settings.svg";
 import logout from "../assets/svg/logout.svg";
 import Li from "../components/elements/Li";
+import { useState } from "react";
+import NotificationModal from "../modals/NotificationModal";
 
-const MainLayout = ({defaultTitle}) => {
+const MainLayout = ({ defaultTitle }) => {
+  
+  const [isNotificationShown, setIsNotificationShown] = useState(false)
+
+  const handleNotificationModal = () => {
+
+    setIsNotificationShown(!isNotificationShown)
+  }
+
     const location = useLocation();
     const currentRoute = location.pathname.replace("/lms/", "").replace(/^\w/, (c) => c.toUpperCase());
    
@@ -72,10 +82,15 @@ const MainLayout = ({defaultTitle}) => {
             JA
           </h1>
 
+          {/* here's where we are editing */}
 
-          <div className=" flex justify-center border-[#1F1D39] p-[0.59rem] w-fit rounded-[0.587rem] bg-icon_blue">
+          <div className=" flex justify-center border-[#1F1D39] p-[0.59rem] w-fit rounded-[0.587rem] bg-icon_blue cursor-pointer" onClick={()=>(setIsNotificationShown(true))}>
             <img src={bell} alt="alert-icon" />
           </div>
+
+          {isNotificationShown && (
+            <NotificationModal handleNotificationModal={handleNotificationModal} />
+          )}
         </section>
         <Outlet  />
         <footer>
