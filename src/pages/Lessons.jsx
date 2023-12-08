@@ -49,7 +49,7 @@ const Lessons = () => {
           Blind Woodturner: Turning passion into fine art
         </h5>
 
-        <FontAwesomeIcon icon={autoSwitch ? faToggleOn : faToggleOff } onClick={handleToggleAutoSwitch}/>
+        <FontAwesomeIcon icon={autoSwitch ? faToggleOn : faToggleOff } title="Auto Next lesson" onClick={handleToggleAutoSwitch}/>
 
  
 
