@@ -73,7 +73,7 @@ const MainLayout = ({ defaultTitle }) => {
         </div>
       </nav>
 
-      <main className="main w-full  lg:ml-[15.4rem] md:ml-[12.4rem] xl:ml-[17.4rem] min-h-screen bg-primary_blue  md:bg-secondary_blue ">
+      <main className="main w-full  lg:ml-[15.4rem] md:ml-[12.4rem] xl:ml-[17.4rem] min-h-screen bg-primary_blue  md:bg-secondary_blue relative">
       <section className="nav-sec flex justify-between items-center my-4 pt-7 xl:px-12 px-5">
           <h1 className="hidden text-2xl md:block">{currentRoute || defaultTitle}</h1>
 
