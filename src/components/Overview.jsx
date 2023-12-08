@@ -6,44 +6,20 @@ import completedcourse from '../assets/completedcourseicon.png'
 const Overview = () => {
 
     const courseList = [
-        {
+        { courselogo: [progresscourse], coursename: 'Course In Progress', coursecounter: '3' },
 
-            courselogo: [progresscourse],
-            coursename: 'Course In Progress',
-            coursecounter: '3'
-    
-        },
+        { courselogo: [certificateearned], coursename: 'Assignment', coursecounter: '12'  },
 
-        {
+        { courselogo: [completedcourse], coursename: 'Completed courses', coursecounter: '1' },
 
-            courselogo: [certificateearned],
-            coursename: 'Assignment',
-            coursecounter: '12'
-    
-        },
-
-        {
-
-            courselogo: [completedcourse],
-            coursename: 'Completed courses',
-            coursecounter: '1'
-    
-        },
-
-        {
-
-            courselogo: [certificateearned],
-            coursename: 'Certificates earned',
-            coursecounter: '1'
-    
-        }
+        { courselogo: [certificateearned], coursename: 'Certificates earned', coursecounter: '1' }
     ]
 
     return(
         
         <div className='w-full flex justify-between gap-y-4 flex-wrap'>
         {courseList.map((course, index) => (
-          <div key={index} className='flex justify-between border border-solid border-slate-300 w-full md:w-64 px-3 py-2 rounded-3xl'>
+          <div key={index} className='flex justify-between border border-solid border-slate-300 w-full md:w-60 px-3 py-2 rounded-3xl'>
             <div className='flex gap-2'>
             <img src={course.courselogo} alt="Course Logo" />
             <h2>{course.coursename}</h2>    
