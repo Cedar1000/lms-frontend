@@ -11,7 +11,7 @@ const Lessons = () => {
   return (
     <div className="px-5 xl:px-12 mb-24 xl:flex xl:gap-4" >
       <div className="grid gap-2  h-fit">
-      <ReactPlayer url={bible} controls={true} pip={true} />
+      <ReactPlayer url={bible} width={`100%`} controls={true} pip={true} />
         {/* <img src={youtube}title="Blind Woodturner: Turning passion into fine art" alt="" /> */}
         <h5 className="text-xl font-medium">Blind Woodturner: Turning passion into fine art</h5>
         <p>By: John Doe</p>
