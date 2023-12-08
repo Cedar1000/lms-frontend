@@ -34,7 +34,7 @@ const Lessons = () => {
   };
 
   return (
-    <div className="px-5 xl:px-12 mb-24 xl:flex xl:gap-4 relative">
+    <div className="px-5 xl:px-12 mb-24 xl:flex xl:gap-4 relative z[100]">
       <div className="flex flex-col items-start xl:fixed left-[19.4rem] top-[6rem] xl:w-[45%] xl:h-screen overflow-y-auto ">
         <ReactPlayer
           url={selectedVideo !== null ? random[selectedVideo].url : bible}
@@ -75,7 +75,7 @@ const Lessons = () => {
           >
             <ReactPlayer
               url={item.url}
-              width={`10.5rem`}
+              width={`8.5rem`}
               height={`5.875rem`}
               controls={true}
             />

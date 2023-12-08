@@ -12,8 +12,8 @@ const Stack = () => {
         <option value="" disabled>
             Select Stack
         </option>
-        <option value="UI/UX">UI/UX</option>
-        <option value="design">Design Ops</option>
+        <option value="UI/UX" className="text-black" >UI/UX</option>
+        <option value="design" className="text-black">Design Ops</option>
         
         </select>
     </div>
@@ -28,8 +28,8 @@ const Stack = () => {
       <option value="" disabled>
         Select Stack
       </option>
-      <option value="web">Web Development</option>
-      <option value="mobile">Mobile</option>
+      <option value="web" className="text-black">Web Development</option>
+      <option value="mobile" className="text-black">Mobile</option>
      
     </select>
   </div>
@@ -43,8 +43,8 @@ const Stack = () => {
       <option value="" disabled>
         Select Stack
       </option>
-      <option value="python">Python</option>
-      <option value="node">Node Js</option>
+      <option value="python" className="text-black">Python</option>
+      <option value="node" className="text-black">Node Js</option>
      
     </select>
   </div>
@@ -58,8 +58,8 @@ const Stack = () => {
       <option value="" disabled>
         Select Stack
       </option>
-      <option value="product">Product management</option>
-      <option value="project">Project management</option>
+      <option value="product" className="text-black">Product management</option>
+      <option value="project" className="text-black">Project management</option>
      
     </select>
   </div> 

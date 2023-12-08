@@ -30,7 +30,7 @@ const NotificationModal = (props) => {
   };
 
     return (
-        <div className="fixed">
+        <div className="fixed z-[3000]">
       <div
         className={`w-full h-screen bg-black fixed top-0 left-0 z-[1000] transition-opacity ${
           isOpen ? "opacity-60" : "opacity-0"
@@ -38,7 +38,7 @@ const NotificationModal = (props) => {
         onClick={handleClose}
       ></div>
       <div
-        className={`w-[20rem] fixed  overflow-y-auto custom-scrollbar bg-[#082450] h-screen px-3 top-0 right-0 z-[1200] transform transition-transform ${
+        className={`w-[20rem] fixed  overflow-y-auto custom-scrollbar bg-[#082450] h-screen px-3 top-0 right-0 z-[2000] transform transition-transform ${
           isOpen ? "translate-x-0" : "translate-x-full"
         } `} >
                 <img src={closeicon} alt="close icon" className="w-4 absolute top-6 right-1 cursor-pointer" onClick={handleClose} />
