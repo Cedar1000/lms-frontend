@@ -24,6 +24,22 @@ const Dashboard = () => {
   //     'Content-Type': 'application/json',
   //     'Authorization': `Bearer ${accessToken}`,
   //   };
+  const [firstName, setfirtName] = useState("");
+
+  useEffect(() => {
+      
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const user = userData?.user;
+   
+  
+    if (userData) {
+      
+      const { firstName,} = user;
+      setfirtName(firstName);
+     
+  
+    }
+  }, []);
 
   //   // Fetch courses
   //   fetch('https://lms-boo.onrender.com/stack/course/', {
@@ -63,8 +79,8 @@ const Dashboard = () => {
         <div className="profile-icon mt-4">
           
           <h1 className="user flex items-center text-2xl font-semibold gap-2">
-            {profile.firstname} {profile.lastname}
-            Hello Jane 
+           
+            Hello {firstName}
             <span><img src={waving} alt="waving emoji" /></span>
           </h1>
           <p className="text-dullwhite">Lets learn something new today!</p>

@@ -5,6 +5,9 @@ import {faEye, faEyeSlash} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Input from '../components/elements/Input';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from "axios"
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 const Login = () => {
@@ -14,6 +17,7 @@ const Login = () => {
   });
 
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleInputChange = (e) => {
@@ -23,11 +27,40 @@ const Login = () => {
     });
   };
 
-  const handleLogin = (e) => {
+  const handleLogin =  async (e) => {
     e.preventDefault();
-    // Add your login logic here
+    const data = {
+      email: formData.email,
+      password: formData.password,
+     
+    };
+    const url= import.meta.env.VITE_APP_BASE_URL;
+    
+
+    try {
+      setIsLoading(true);
+      const response = await axios.post(`${url}/api/v1/users/login`, data);
+
+    if (response.status === 200) {
+      toast.success("Login successful!");
+      localStorage.setItem("userData",  JSON.stringify(response.data));
+      setIsLoading(false);
+      navigate('/lms/dashboard');
+
+    } else {
+      
+      toast.error("Login failed.");
+    }
+  } catch (error) {
+      toast.error("login failed. Please try again.");
+  }
+
+
+
+
+    
     console.log('Form Data:', formData);
-    navigate('/lms/dashboard');
+   
     
   };
 
@@ -92,7 +125,7 @@ const Login = () => {
           </div>
 
           <div className="flex flex-col justify-center items-center">
-            <Button type="submit" className={''}>Login</Button>
+            <Button type="submit" className={''}>{isLoading ? 'Login....' : 'Login'}</Button>
             <p className=' mt-6 text-[#E0E0E0]'>
               Already have an account? <Link to="/signup"><em className=' text-tertiary_blue'>Sign Up</em></Link>
             </p>
