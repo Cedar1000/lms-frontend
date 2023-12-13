@@ -1,5 +1,5 @@
-import React from "react";
-import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import logo from "../assets/svg/logo.svg";
 import bell from "../assets/svg/bell.svg";
 import dashboard from "../assets/svg/dashboard.svg";
@@ -7,13 +7,15 @@ import courses from "../assets/svg/courses.svg";
 import settings from "../assets/svg/settings.svg";
 import logout from "../assets/svg/logout.svg";
 import Li from "../components/elements/Li";
-import { useState } from "react";
+
 import NotificationModal from "../modals/NotificationModal";
 
 const MainLayout = ({ defaultTitle }) => {
   
   const [isNotificationShown, setIsNotificationShown] = useState(false)
-
+  const [userInitials, setUserInitials] = useState("");
+  const [firtName, setfirtName] = useState("");
+  const [lastName, setLastName] = useState("");
   const handleNotificationModal = () => {
 
     setIsNotificationShown(!isNotificationShown)
@@ -21,7 +23,34 @@ const MainLayout = ({ defaultTitle }) => {
 
     const location = useLocation();
     const currentRoute = location.pathname.replace("/lms/", "").replace(/^\w/, (c) => c.toUpperCase());
-   
+   const navigate = useNavigate();
+    const handleLogout = () => {
+      localStorage.clear();
+      navigate("/");
+    }
+
+    useEffect(() => {
+      
+      const userData = JSON.parse(localStorage.getItem("userData"));
+      const user = userData?.user;
+      
+    
+      if (userData) {
+        
+        const { firstName, lastName, email } = user;
+        setfirtName(firstName);
+        setLastName(lastName);
+    
+    
+  
+        const firstNameInitial = firstName ? firstName.charAt(0).toUpperCase() : "";
+        const lastNameInitial = lastName ? lastName.charAt(0).toUpperCase() : "";
+    
+       
+        const initials = `${firstNameInitial}${lastNameInitial}`;
+        setUserInitials(initials);
+      }
+    }, []);
 
     const getLinkStyle = (path) => ({
       backgroundColor: location.pathname === path ? "#197ED2" : "",
@@ -63,10 +92,10 @@ const MainLayout = ({ defaultTitle }) => {
         </div>
         <div className=" lg:ml-[2rem] xl:mb-[4rem]  w-fit p-4 mx-auto rounded-3xl">
           <h1 className=" font-bold border-[4px] border-[#0756CD] p-[0.39rem] w-fit rounded-full mx-auto">
-            JA
+           {userInitials}
           </h1>
-          <h1 className="text-2xl font-semibold mx-auto mt-4 mb-2">John Doe</h1>
-          <p className="flex items-center gap-[0.88rem]">
+          <h1 className="text-2xl font-semibold mx-auto mt-4 mb-2">{firtName} {lastName}</h1>
+          <p className="flex items-center gap-[0.88rem]" onClick={handleLogout}>
             <img src={settings} alt="logout-icon" />
             Log out
           </p>
@@ -79,8 +108,10 @@ const MainLayout = ({ defaultTitle }) => {
 
           <img src={logo} className="md:hidden" alt="logo" />
           <h1 className="md:hidden font-bold border-[4px] border-[#0756CD] p-[0.39rem] w-fit rounded-full ">
-            JA
+            {userInitials}
           </h1>
+
+        
 
           {/* here's where we are editing */}
 
@@ -125,7 +156,7 @@ const MainLayout = ({ defaultTitle }) => {
             </Link>
             <p
               className={`bg-shadedblue w-11 h-[2.68rem] flex justify-center items-center hover:bg-tertiary_blue`}
-              title="logout"
+              title="logout" onClick={handleLogout}
             >
         
               <img src={logout} alt="dasboard-icon" />{" "}

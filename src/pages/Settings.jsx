@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MainLayout from "./MainLayout";
 import logo from "../assets/svg/logo.svg";
 import bell from "../assets/svg/bell.svg";
@@ -6,17 +6,49 @@ import Input from "../components/elements/Input";
 import Button from "../components/elements/Button";
 
 const Settings = () => {
+  const [userInitials, setUserInitials] = useState("");
+  const [firtName, setfirtName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  console.log(userInitials);
+  console.log(firtName);
+  console.log(lastName);
+  console.log(email);
+
+
+  useEffect(() => {
+      
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const user = userData?.user;
+    console.log('userData', user);
+  
+    if (userData) {
+      
+      const { firstName, lastName, email } = user;
+      setfirtName(firstName);
+      setLastName(lastName);
+      setEmail(email);
+  
+
+      const firstNameInitial = firstName ? firstName.charAt(0).toUpperCase() : "";
+      const lastNameInitial = lastName ? lastName.charAt(0).toUpperCase() : "";
+  
+     
+      const initials = `${firstNameInitial}${lastNameInitial}`;
+      setUserInitials(initials);
+    }
+  }, []);
   return (
     
       <div className="mb-[10.56rem] xl:px-12">
         
         <div className="flex items-center gap-4 w-fit mx-5 mt-16">
           <h1 className=" font-bold border-[4px] border-[#0756CD] p-[0.39rem] w-fit rounded-full mx-auto">
-            JA
+            {userInitials}
           </h1>
           <div>
-            <h1 className="text-2xl font-semibold ">John Doe</h1>
-            <p>Ebilambert56@gmail.com</p>
+            <h1 className="text-2xl font-semibold ">{firtName} {lastName}</h1>
+            <p>{email}</p>
           </div>
         </div>
         <section className="mx-5 lg:flex justify-between xl:gap-20 lg:gap-10">
