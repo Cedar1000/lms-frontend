@@ -112,9 +112,13 @@ const Login = () => {
             className="w-4 h-4"
             required
           />
-          <p>
+          {/* <p>
             <i>Forgot Password?</i>
-          </p>
+          </p> */}
+
+          <Link to="/forgotpassword" className="text-tertiary_blue">
+          <i>Forgot Password?</i>
+            </Link>
         </div>
 
         <div className="flex flex-col justify-center items-center">

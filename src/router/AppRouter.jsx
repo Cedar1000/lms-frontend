@@ -8,6 +8,7 @@ import Courses from '../pages/Courses';
 import MainLayout from '../pages/MainLayout';
 import Lessons from '../pages/Lessons';
 import LessonList from '../pages/LessonList';
+import ForgotPasswordRedirection from '../pages/ForgotPasswordRedirection';
 
 const AppRouter = () => {
   return (
@@ -15,8 +16,10 @@ const AppRouter = () => {
       <Routes>
         <Route index path={`/`} element={<Login />} />
         <Route path={`/signup`} element={<Signup />} />
+        <Route path={`/forgotpassword`} element={<ForgotPasswordRedirection />} />
         <Route path={`/lms`} element={<MainLayout />}>
           <Route path={`/lms/dashboard`} element={<Dashboard />} />
+        
           <Route path={`/lms/courses`} element={<Courses />} />
           <Route
             path={`/lms/lessons`}
@@ -25,6 +28,7 @@ const AppRouter = () => {
             <Route path={`/lms/lessons/:list`} element={<LessonList />} />
           </Route>
           <Route path={`/lms/settings`} element={<Settings />} />
+          
         </Route>
       </Routes>
     </BrowserRouter>

@@ -73,6 +73,7 @@ const Signup = () => {
     } else {
       toast.error("Passwords do not match");
     }
+
   };
 
   return (

@@ -90,12 +90,12 @@ const MainLayout = ({ defaultTitle }) => {
             </Li>
           </ul>
         </div>
-        <div className=" lg:ml-[2rem] xl:mb-[4rem]  w-fit p-4 mx-auto rounded-3xl">
+        <div className="space-y-2 lg:ml-[2rem] xl:mb-[4rem]  w-fit rounded-3xl">
           <h1 className=" font-bold border-[4px] border-[#0756CD] p-[0.39rem] w-fit rounded-full mx-auto">
            {userInitials}
           </h1>
-          <h1 className="text-2xl font-semibold mx-auto mt-4 mb-2">{firtName} {lastName}</h1>
-          <p className="flex items-center gap-[0.88rem]" onClick={handleLogout}>
+          <h1 className="text-2xl font-semibold mt-4 mb-2">{firtName} <br /> {lastName}</h1>
+          <p className="flex gap-[0.88rem]" onClick={handleLogout}>
             <img src={settings} alt="logout-icon" />
             Log out
           </p>
