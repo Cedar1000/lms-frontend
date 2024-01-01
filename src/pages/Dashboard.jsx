@@ -1,87 +1,32 @@
-import React, { useEffect, useState } from "react";
-import logo from "../assets/svg/logo.svg";
-import bell from "../assets/svg/bell.svg";
-import waving from '../assets/wavingemoji.png'
-import progresscourse from '../assets/progresscourseicon.png'
-import Overview from '../components/Overview'
-import CourseOutline from "../components/CourseOutline";
-import Announcement from "../components/Announcement";
-import Assignments from "../components/Assignments";
-import MainLayout from "./MainLayout";
+import { useEffect, useState } from 'react';
+
+import waving from '../assets/wavingemoji.png';
+import Overview from '../components/Overview';
+import CourseOutline from '../components/CourseOutline';
+import Notifications from '../components/Notifications';
+import Assignments from '../components/Assignments';
 
 const Dashboard = () => {
-  const [profile, setProfile] = useState({});
-  const [coursesCount, setCoursesCount] = useState(0);
-  // const [assignments, setAssignments] = useState([]);
-
-  // useEffect(() => {
-  //   const users = sessionStorage.getItem('user');
-  //   const profileData = JSON.parse(users);
-  //   setProfile(profileData.user);
-
-  //   const accessToken = profileData.access_token;
-  //   const headers = {
-  //     'Content-Type': 'application/json',
-  //     'Authorization': `Bearer ${accessToken}`,
-  //   };
-  const [firstName, setfirtName] = useState("");
+  const [firstName, setfirtName] = useState('');
 
   useEffect(() => {
-      
-    const userData = JSON.parse(localStorage.getItem("userData"));
-    const user = userData?.user;
-   
-  
-    if (userData) {
-      
-      const { firstName,} = user;
+    const user = JSON.parse(localStorage.getItem('user'));
+
+    if (user) {
+      const { firstName } = user;
       setfirtName(firstName);
-     
-  
     }
   }, []);
 
-  //   // Fetch courses
-  //   fetch('https://lms-boo.onrender.com/stack/course/', {
-  //     method: 'GET',
-  //     headers: headers,
-  //   })
-  //     .then(response => response.json())
-  //     .then(courses => {
-  //       setCoursesCount(courses.length);
-  //     })
-  //     .catch(error => {
-  //       console.error('Error fetching course:', error);
-  //     });
-
-  //   // Fetch assignments
-  //   fetch('https://lms-boo.onrender.com/stack/assignment', {
-  //     headers: headers,
-  //   })
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       setAssignments(data);
-  //     })
-  //     .catch(error => {
-  //       console.error('Error fetching assignments:', error);
-  //     });
-  // }, []);
-
   return (
-    
-        <div className="main-sec text-white min-h-screen">
-    
+    <div className="main-sec text-white min-h-screen">
       <main className="main w-full p-12 min-h-screen  bg-primary_blue  md:bg-secondary_blue ">
-       
-
-
-
         <div className="profile-icon mt-4">
-          
           <h1 className="user flex items-center text-2xl font-semibold gap-2">
-           
             Hello {firstName}
-            <span><img src={waving} alt="waving emoji" /></span>
+            <span>
+              <img src={waving} alt="waving emoji" />
+            </span>
           </h1>
           <p className="text-dullwhite">Lets learn something new today!</p>
           <div>
@@ -93,21 +38,24 @@ const Dashboard = () => {
         <div>
           <div className="flex justify-between flex-wrap gap-3 items-start w-full mt-12">
             <div className="space-y-3">
-              <h1 className="text-2xl">All courses</h1>
-              <p className="text-dullwhite">Upskill with our expertly selected courses</p>
+              <h1 className="text-2xl">Recent courses</h1>
+              <p className="text-dullwhite">
+                Upskill with our expertly selected courses
+              </p>
             </div>
-            <button className="bg-tertiary_blue px-6 py-2 rounded-lg">Go To Courses</button>
+            <button className="bg-tertiary_blue px-6 py-2 rounded-lg">
+              Go To Courses
+            </button>
           </div>
-          <CourseOutline />
+          <CourseOutline limit={4} />
         </div>
 
         <div className="mt-12 flex gap-8 w-full flex-wrap">
-          <Announcement/>
-          <Assignments/>
-       </div>
+          <Notifications />
+          <Assignments />
+        </div>
       </main>
     </div>
-   
   );
 };
 

@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import MainLayout from './MainLayout';
-import logo from '../assets/svg/logo.svg';
-import bell from '../assets/svg/bell.svg';
+import { useEffect, useState } from 'react';
+
 import Input from '../components/elements/Input';
 import Button from '../components/elements/Button';
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Layout from './Layout';
 import Button from '../components/elements/Button';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
@@ -36,11 +36,17 @@ const Login = () => {
 
     try {
       setIsLoading(true);
-      const response = await axios.post(`${url}/api/v1/users/login`, data);
+      const response = await axios.post(`${url}/users/login`, data);
+      console.log('login', response.data);
+
+      const { accessToken, user } = response.data;
 
       if (response.status === 200) {
         toast.success('Login successful!');
-        localStorage.setItem('userData', JSON.stringify(response.data));
+
+        localStorage.setItem('token', JSON.stringify(accessToken));
+        localStorage.setItem('user', JSON.stringify(user));
+
         setIsLoading(false);
         navigate('/lms/dashboard');
       } else {
@@ -117,8 +123,8 @@ const Login = () => {
           </p> */}
 
           <Link to="/forgotpassword" className="text-tertiary_blue">
-          <i>Forgot Password?</i>
-            </Link>
+            <i>Forgot Password?</i>
+          </Link>
         </div>
 
         <div className="flex flex-col justify-center items-center">
