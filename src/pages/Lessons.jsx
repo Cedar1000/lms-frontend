@@ -5,7 +5,6 @@ import axios from '../utility/axios';
 
 //assets
 import playvideo from '../assets/svg/play-video.svg';
-import bible from '../assets/dummy/bible.mp4';
 import { random } from '../utility/dummy';
 import ReactPlayer from 'react-player';
 import { faToggleOff, faToggleOn } from '@fortawesome/free-solid-svg-icons';
@@ -25,7 +24,9 @@ const Lessons = () => {
   const fetchLessons = async () => {
     try {
       setIsLoading(true);
-      const response = await axios.get(`/lessons?course=${courseId}`);
+      const response = await axios.get(
+        `/lessons?course=${courseId}&sort=number`
+      );
 
       const response2 = await axios.get(`/course/${courseId}`);
       setCourse(response2.data.doc);
@@ -80,8 +81,8 @@ const Lessons = () => {
             />
             {/* <img src={youtube}title="Blind Woodturner: Turning passion into fine art" alt="" /> */}
             <div className="flex justify-between w-full items-center pr-2">
-              <h5 className="text-xl font-medium">
-                Blind Woodturner: Turning passion into fine art
+              <h5 className="text-xl font-medium py-2">
+                {selectedVideo?.title}
               </h5>
 
               <FontAwesomeIcon
@@ -89,20 +90,13 @@ const Lessons = () => {
                 title="Auto Next lesson"
                 onClick={handleToggleAutoSwitch}
               />
-            </div>
-            <p>By: John Doe</p>
-            <p className="text-sm">
-              Chris Fisher, also known as the Blind Woodturner, learned his
-              craft by listening to hundreds of hours of YouTube videos and
-              experimenting in his workshop. Now he’s a YouTube creator himself,
-              sells his products worldwide, and does demonstrations all around
-              the country.
-            </p>
+            </div>{' '}
+            <p className="text-sm">{selectedVideo?.description}</p>
             <div></div>
           </div>
 
           <div className="ml-0 pt-5 mt-5 xl:mt-0 xl:ml-auto xl:w-fit relative right-0 overflow-y-auto">
-            {lessons.map((lesson, index) => (
+            {lessons?.map((lesson, index) => (
               <div
                 key={index}
                 className={`flex items-center gap-2 pt-2 cursor-pointer ${
@@ -112,7 +106,11 @@ const Lessons = () => {
               >
                 <img width="120px" src={playvideo} />
                 <div>
-                  <p>Lesson</p>
+                  <p>{lesson.title}</p>
+                  <p>
+                    {lesson.description.slice(0, 40)} {'...'}
+                  </p>
+                  <p>{lesson.duration}</p>
                 </div>
               </div>
             ))}
