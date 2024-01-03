@@ -33,7 +33,6 @@ const Signup = () => {
   };
 
   const navigate = useNavigate();
-  const url = import.meta.env.VITE_APP_BASE_URL;
 
   const handleSignup = async (e) => {
     e.preventDefault();
