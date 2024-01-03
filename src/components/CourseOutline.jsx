@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import loadingicon from '../assets/loading icon.gif'
 import axios from '../utility/axios';
 
 //assets
@@ -31,7 +31,9 @@ const CourseOutline = ({ limit = 100 }) => {
   return (
     <div>
       {isLoading ? (
-        <h2 className="p-4 text-center">Loading...</h2>
+        <div className="flex justify-center items-center w-full h-screen">
+          <img src={loadingicon} alt="loading icon" className='w-36' />
+        </div>
       ) : (
         <div className="w-full flex justify-between gap-y-4 flex-grow-1 flex-wrap mt-12">
           {courses?.map((course, index) => (
