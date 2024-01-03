@@ -1,26 +1,24 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import auth from "../assets/auth.png";
-import Input from "../components/elements/Input";
-import Button from "../components/elements/Button";
-import Layout from "./Layout";
-import { useNavigate } from "react-router-dom"
-import axios from "axios"
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import Input from '../components/elements/Input';
+import Button from '../components/elements/Button';
+import Layout from './Layout';
+import { useNavigate } from 'react-router-dom';
+import axios from '../utility/axios';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Signup = () => {
   const [formData, setFormData] = useState({
-    firstname: "",
-    lastname: "",
-    email: "",
-    phone: "",
-    password: "",
-    confirmPassword: "",
+    firstname: '',
+    lastname: '',
+    email: '',
+    phone: '',
+    password: '',
+    confirmPassword: '',
   });
   const [passwordMatch, setPasswordMatch] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
-
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -29,20 +27,19 @@ const Signup = () => {
       [name]: value,
     });
 
-    if (name === "confirmPassword") {
+    if (name === 'confirmPassword') {
       setPasswordMatch(value === formData.password);
     }
   };
 
   const navigate = useNavigate();
-  const url= import.meta.env.VITE_APP_BASE_URL;
-
+  const url = import.meta.env.VITE_APP_BASE_URL;
 
   const handleSignup = async (e) => {
     e.preventDefault();
 
     if (passwordMatch) {
-     const data = {
+      const data = {
         firstName: formData.firstname,
         lastName: formData.lastname,
         email: formData.email,
@@ -50,30 +47,26 @@ const Signup = () => {
         password: formData.password,
         passwordConfirm: formData.confirmPassword,
       };
-      
 
       try {
         setIsLoading(true);
-        const response = await axios.post(`${url}/api/v1/users/signup`, data);
+        const response = await axios.post(`/users/signup`, data);
 
-      if (response.status === 201) {
-        toast.success("Registration successful!");
-        localStorage.setItem("userData", response.data);
+        toast.success('Registration successful!');
+        localStorage.setItem('userData', response.data);
         setIsLoading(false);
-        navigate('/')
-
-      } else {
-        
-        toast.error("Registration failed.");
+        navigate('/');
+      } catch (error) {
+        if (error.response.data.message.startsWith('E11000')) {
+          return toast.error('Email Already in use');
+        }
+        toast.error(error.response.data.message);
+      } finally {
+        setIsLoading(false);
       }
-    } catch (error) {
-        toast.error("Registration failed.");
-    }
-
     } else {
-      toast.error("Passwords do not match");
+      toast.error('Passwords do not match');
     }
-
   };
 
   return (
@@ -154,7 +147,7 @@ const Signup = () => {
 
         <div className="checkdiv">
           <Input
-            inputClass={"flex gap-2 w-fit items-center flex-row-reverse"}
+            inputClass={'flex gap-2 w-fit items-center flex-row-reverse'}
             label="I agree to the terms and conditions"
             labelClass="text-lg"
             type="checkbox"
@@ -166,11 +159,11 @@ const Signup = () => {
         </div>
 
         <div className="flex flex-col justify-center items-center">
-          <Button type="submit" className={""}>
-            {isLoading ? "creating acct..." : "Sign Up"}
+          <Button type="submit" className={''}>
+            {isLoading ? 'creating acct...' : 'Sign Up'}
           </Button>
           <p className="text-[#E0E0E0] mt-6">
-            Already have an account?{" "}
+            Already have an account?{' '}
             <Link to="/" className="text-tertiary_blue">
               Sign in
             </Link>
