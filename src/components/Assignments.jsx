@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from '../utility/axios';
+import loadingicon from '../assets/loading icon.gif'
 
 //assets
 import assignmenticon from '../assets/Document.png';
@@ -47,7 +48,9 @@ const Assignments = () => {
     <div className="w-[28rem] h-fit border border-solid border-borderpurple pl-4 pr-8 py-6 rounded-lg">
       <h1 className="text-white text-2xl mb-8">Assignments </h1>
       {isLoading ? (
-        <h2>Loading...</h2>
+        <div className="flex justify-center items-center w-full h-screen">
+        <img src={loadingicon} alt="loading icon" className='w-36' />
+      </div>
       ) : (
         <div>
           {assignments?.length ? (

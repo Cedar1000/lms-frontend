@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import loadingicon from '../assets/loading icon.gif'
 
 import axios from '../utility/axios';
 
@@ -67,7 +68,9 @@ const Lessons = () => {
   return (
     <div>
       {isLoading ? (
-        <h1 className="text-center">Loading...</h1>
+         <div className="flex justify-center items-center w-full h-screen">
+         <img src={loadingicon} alt="loading icon" className='w-36' />
+       </div>
       ) : (
         <div className="px-5 xl:px-12 mb-24 xl:flex xl:gap-4 relative z[100]">
           <div className="flex flex-col items-start xl:fixed left-[19.4rem] top-[6rem] xl:w-[45%] xl:h-screen overflow-y-auto ">
