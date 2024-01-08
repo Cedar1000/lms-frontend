@@ -5,10 +5,12 @@ import moment from 'moment';
 
 //assets
 import assignmenticon from '../assets/Document.png';
+import AssignmentModal from '../modals/AssignmentModal';
 
 const Assignments = () => {
   const [assignments, setAssignments] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
+  const [selectedAssignment, setSelectedAssignment] = useState(null);
 
   const fetchAssignments = async () => {
     try {
@@ -27,6 +29,16 @@ const Assignments = () => {
     fetchAssignments();
   }, []);
 
+
+  
+  const handleAssignmentClick = (assignment) => {
+    setSelectedAssignment(assignment);
+  };
+
+  const closeModal = () => {
+    setSelectedAssignment(null);
+  };
+
   return (
     <div className="w-[28rem] h-fit border border-solid border-borderpurple pl-4 pr-8 py-6 rounded-lg">
       <h1 className="text-white text-2xl mb-8">Assignments </h1>
@@ -44,7 +56,7 @@ const Assignments = () => {
                   className="w-6 pt-1"
                   alt="assignment icon"
                 />
-                <div>
+                <div onClick={() => handleAssignmentClick(assignment)}>
                   <h2 className="">{assignment.title}</h2>
                   <p className="text-xs text-assignmentpurple font-sans">
                     Due Date:{' '}
@@ -59,6 +71,13 @@ const Assignments = () => {
             <h2>No Assignments yet!</h2>
           )}
         </div>
+      )}
+
+{selectedAssignment && (
+        <AssignmentModal
+          assignment={selectedAssignment}
+          closeModal={closeModal}
+        />
       )}
     </div>
   );
