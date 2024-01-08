@@ -66,12 +66,13 @@ const Lessons = () => {
   };
 
   return (
+    
     <div>
       {isLoading ? (
          <div className="flex justify-center items-center w-full h-screen">
          <img src={loadingicon} alt="loading icon" className='w-36' />
        </div>
-      ) : (
+      ) : lessons && lessons.length > 0 ? (
         <div className="px-5 xl:px-12 mb-24 xl:flex xl:gap-4 relative z[100]">
           <div className="flex flex-col items-start xl:fixed left-[19.4rem] top-[6rem] xl:w-[45%] xl:h-screen overflow-y-auto ">
             <h1 className="hidden text-2xl md:block m-2">{course?.title}</h1>
@@ -118,7 +119,12 @@ const Lessons = () => {
               </div>
             ))}
           </div>
+        </div>) : (
+        // Placeholder message when lessons array is empty
+        <div className="flex justify-center items-center w-full h-screen">
+          <p className="text-2xl">No lessons yet for this course.</p>
         </div>
+
       )}
     </div>
   );

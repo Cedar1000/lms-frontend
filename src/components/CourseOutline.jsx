@@ -35,7 +35,7 @@ const CourseOutline = ({ limit = 100 }) => {
           <img src={loadingicon} alt="loading icon" className='w-36' />
         </div>
       ) : (
-        <div className="w-full flex justify-between gap-y-4 flex-grow-1 flex-wrap mt-12">
+        <div className="w-full grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-y-4  mt-12">
           {courses?.map((course, index) => (
             <div
               key={index}
