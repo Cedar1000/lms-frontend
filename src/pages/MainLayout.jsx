@@ -76,6 +76,16 @@ const MainLayout = ({ defaultTitle }) => {
             >
               My Courses
             </Li>
+
+            <Li
+              to="/lms/assignments"
+              src={bell}
+              style={getLinkStyle('/lms/assignments')}
+              className={`gap-[0.88rem]`}
+              alt="Courses-icon"
+            >
+              Assignments
+            </Li>
             <Li
               to="/lms/settings"
               src={settings}

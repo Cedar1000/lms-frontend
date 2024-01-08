@@ -4,6 +4,7 @@ import Login from '../pages/Login';
 import Dashboard from '../pages/Dashboard';
 import Settings from '../pages/Settings';
 import Courses from '../pages/Courses';
+import Assignments from '../pages/Assignments';
 import MainLayout from '../pages/MainLayout';
 import Lessons from '../pages/Lessons';
 import ForgotPasswordRedirection from '../pages/ForgotPasswordRedirection';
@@ -22,6 +23,7 @@ const AppRouter = () => {
           <Route path={`/lms/dashboard`} element={<Dashboard />} />
 
           <Route path={`/lms/courses`} element={<Courses />} />
+          <Route path={`/lms/assignments`} element={<Assignments />} />
           <Route
             path={`/lms/lessons/:courseId`}
             element={<Lessons defaultTitle={'Lessons'} />}
