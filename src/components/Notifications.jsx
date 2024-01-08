@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from '../utility/axios';
+import moment from 'moment';
 
 //assets
 import bell from '../assets/Bell.png';
@@ -20,6 +21,7 @@ const Notifications = () => {
     fetcthNotifications();
   }, []);
 
+
   return (
     <div className=" text-dullwhite">
       <div className="max-w-[28rem] border border-solid border-borderpurple pl-4 pr-8 py-6 rounded-lg">
@@ -32,9 +34,15 @@ const Notifications = () => {
         {notifications?.length ? (
           notifications?.map((news, index) => (
             <div key={index}>
-              <h2 className="mt-4 mb-2 text-white">{news.address}</h2>
-              <p className="text-xs mb-2 text-dullwhite">{news.addressbody}</p>
+              <h2 className="mt-4 mb-2 text-white">{news.type}</h2>
+              <p className="text-xs mb-2 text-dullwhite">{news.message}</p>
               <hr className="bg-linecolor border-0 h-[1px]" />
+              <p className="text-xs text-assignmentpurple font-sans">
+                    Date:{' '}
+                    {moment(news.createdAt).format(
+                      'MMMM Do YYYY, h:mm:ss a'
+                    )}
+                  </p>
             </div>
           ))
         ) : (
