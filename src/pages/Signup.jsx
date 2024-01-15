@@ -16,9 +16,17 @@ const Signup = () => {
     phone: '',
     password: '',
     confirmPassword: '',
+    stack: '',
   });
+  
   const [passwordMatch, setPasswordMatch] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+    const [selectedOptions, setSelectedOptions] = useState([]);
+
+  const handleSelectChange = (event) => {
+    const selected = Array.from(event.target.selectedOptions, (option) => option.value);
+    setSelectedOptions(selected);
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -120,6 +128,23 @@ const Signup = () => {
           onChange={handleInputChange}
           required
         />
+        <div>
+          <label htmlFor="stackOption" className="mb-[0.25rem] text-lg ">Course Stack</label>
+          <select
+            id="stackOption"
+            className="w-full mt-4 p-3 rounded-lg border-2 bg-inherit outline-none border-[#E0E0E0]"
+            value={formData.stack}
+            name="stack"
+            onChange={handleInputChange}
+          >
+            <option value="" className='bg-shadedblue'>Select...</option>
+            <option value="product Design" className='bg-shadedblue'>Product Design</option>
+            <option value="DevOps" className='bg-shadedblue'>DevOps</option>
+            <option value="Frontend Development" className='bg-shadedblue'>Frontend Development</option>
+            <option value="Backend Development" className='bg-shadedblue'>Backend Development</option>
+          </select>
+
+          </div>
         <div className="passworddiv">
           <Input
             label="Password"

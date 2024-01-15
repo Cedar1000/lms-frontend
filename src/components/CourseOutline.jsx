@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import loadingicon from "../assets/loading icon.gif";
 import axios from "../utility/axios";
 
@@ -12,17 +12,22 @@ const CourseOutline = ({ limit = 100 }) => {
   const [courses, setCourses] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState(null);
+  
+  const navigate = useNavigate();
 
 
 
   // Function to handle the click event of the "View" button
   const handleViewClick = (course) => {
     setSelectedCourse(course);
-    console.log(selectedCourse);
-    console.log(course);
-    console.log(course.name);
-    console.log(course.description);
-    console.log(course.instructor);
+    // if (course.paid) {
+    //   // If paid, navigate to the lessons page
+    //  navigate(`/lms/lessons/${course.id}?selectedCourse=${encodeURIComponent(JSON.stringify(course))}`);
+    // } else {
+    //   // If not paid, navigate to the payment gateway page
+    //   navigate(`/payment-gateway/${course.id}`);
+    // }
+   
   };
 
   const fetchCourses = async () => {
