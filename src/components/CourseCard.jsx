@@ -16,6 +16,8 @@ const CourseCard = ({ course }) => {
 
   const user = JSON.parse(localStorage.getItem('user'));
 
+  if (!user.coursesPurchased) user.coursesPurchased = {};
+
   const publicKey = import.meta.env.VITE_APP_PAYSTACK_KEY;
 
   const config = () => ({
