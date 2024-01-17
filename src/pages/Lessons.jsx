@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation, Link } from 'react-router-dom';
 import loadingicon from '../assets/loading icon.gif';
 
 import axios from '../utility/axios';
@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 //assets
 import playvideo from '../assets/svg/play-video.svg';
+import pdficon from '../assets/pdf.png';
 import { random } from '../utility/dummy';
 import ReactPlayer from 'react-player';
 import { faToggleOff, faToggleOn } from '@fortawesome/free-solid-svg-icons';
@@ -117,14 +118,24 @@ const Lessons = () => {
         <div className="px-5 xl:px-12 mb-24 xl:flex xl:gap-4 relative z[100]">
           <div className="flex flex-col items-start xl:fixed left-[19.4rem] top-[6rem] xl:w-[45%] xl:h-screen overflow-y-auto ">
             <h1 className="hidden text-2xl md:block m-2">{course?.title}</h1>
-            <ReactPlayer
-              url={selectedVideo?.link}
-              width={`100%`}
-              controls={true}
-              pip={true}
-              onEnded={handleVideoEnd}
-            />
-            {/* <img src={youtube}title="Blind Woodturner: Turning passion into fine art" alt="" /> */}
+            {selectedVideo.format === 'video' ? (
+              <ReactPlayer
+                url={selectedVideo?.link}
+                width={`100%`}
+                controls={true}
+                pip={true}
+                onEnded={handleVideoEnd}
+              />
+            ) : (
+              <div className="flex text-center">
+                <Link
+                  className="bg-tertiary_blue py-2 px-3 rounded-md ml-6 lg:ml-0 my-0 md:ml-0 md:my-0"
+                  to={selectedVideo?.link}
+                >
+                  View PDF
+                </Link>
+              </div>
+            )}
             <div className="flex justify-between w-full items-center pr-2">
               <h5 className="text-xl font-medium py-2">
                 {selectedVideo?.title}
@@ -156,7 +167,10 @@ const Lessons = () => {
                 }`}
                 onClick={() => handleVideoSelect(lesson)}
               >
-                <img width="120px" src={playvideo} />
+                <img
+                  width="120px"
+                  src={lesson.format === 'video' ? playvideo : pdficon}
+                />
 
                 <div>
                   <p>{lesson.title}</p>
