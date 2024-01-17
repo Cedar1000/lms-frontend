@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import waving from '../assets/wavingemoji.png';
 import Overview from '../components/Overview';
@@ -43,9 +44,12 @@ const Dashboard = () => {
                 Upskill with our expertly selected courses
               </p>
             </div>
-            <button className="bg-tertiary_blue px-6 py-2 rounded-lg">
+            <Link
+              to={'/lms/courses'}
+              className="bg-tertiary_blue px-6 py-2 rounded-lg"
+            >
               Go To Courses
-            </button>
+            </Link>
           </div>
           <CourseOutline limit={4} />
         </div>
