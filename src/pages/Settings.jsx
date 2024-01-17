@@ -10,10 +10,9 @@ const Settings = () => {
   const [email, setEmail] = useState('');
 
   useEffect(() => {
-    const userData = JSON.parse(localStorage.getItem('userData'));
-    const user = userData?.user;
+    const user = JSON.parse(localStorage.getItem('user'));
 
-    if (userData) {
+    if (user) {
       const { firstName, lastName, email } = user;
       setfirtName(firstName);
       setLastName(lastName);

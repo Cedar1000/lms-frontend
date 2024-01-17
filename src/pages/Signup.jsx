@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Input from '../components/elements/Input';
 import Button from '../components/elements/Button';
@@ -16,24 +16,16 @@ const Signup = () => {
     phone: '',
     password: '',
     confirmPassword: '',
-    stack: '',
+    programme: null,
   });
-  
+
   const [passwordMatch, setPasswordMatch] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
-    const [selectedOptions, setSelectedOptions] = useState([]);
-
-  const handleSelectChange = (event) => {
-    const selected = Array.from(event.target.selectedOptions, (option) => option.value);
-    setSelectedOptions(selected);
-  };
+  const [programmes, setProgrammes] = useState(null);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    setFormData({ ...formData, [name]: value });
 
     if (name === 'confirmPassword') {
       setPasswordMatch(value === formData.password);
@@ -46,6 +38,7 @@ const Signup = () => {
     e.preventDefault();
 
     if (passwordMatch) {
+      const programme = programmes.find((el) => el.name === formData.programme);
       const data = {
         firstName: formData.firstname,
         lastName: formData.lastname,
@@ -53,6 +46,7 @@ const Signup = () => {
         phone: formData.phone,
         password: formData.password,
         passwordConfirm: formData.confirmPassword,
+        programme: programme.id,
       };
 
       try {
@@ -75,6 +69,23 @@ const Signup = () => {
       toast.error('Passwords do not match');
     }
   };
+
+  const fetchProgrammes = async () => {
+    try {
+      setIsLoading(true);
+      const response = await axios.get('/programmes');
+
+      setProgrammes(response.data.doc);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchProgrammes();
+  }, []);
 
   return (
     <Layout className="w-48" wrapper="lg:h-full">
@@ -129,22 +140,31 @@ const Signup = () => {
           required
         />
         <div>
-          <label htmlFor="stackOption" className="mb-[0.25rem] text-lg ">Course Stack</label>
+          <label htmlFor="stackOption" className="mb-[0.25rem] text-lg ">
+            Select Programme
+          </label>
           <select
             id="stackOption"
             className="w-full mt-4 p-3 rounded-lg border-2 bg-inherit outline-none border-[#E0E0E0]"
             value={formData.stack}
-            name="stack"
+            name="programme"
             onChange={handleInputChange}
           >
-            <option value="" className='bg-shadedblue'>Select...</option>
-            <option value="product Design" className='bg-shadedblue'>Product Design</option>
-            <option value="DevOps" className='bg-shadedblue'>DevOps</option>
-            <option value="Frontend Development" className='bg-shadedblue'>Frontend Development</option>
-            <option value="Backend Development" className='bg-shadedblue'>Backend Development</option>
-          </select>
+            <option value="" className="bg-shadedblue">
+              Select...
+            </option>
 
-          </div>
+            {programmes?.map((programme) => (
+              <option
+                key={programme.id}
+                value={programme.name}
+                className="bg-shadedblue"
+              >
+                {programme.name}
+              </option>
+            ))}
+          </select>
+        </div>
         <div className="passworddiv">
           <Input
             label="Password"
@@ -184,7 +204,7 @@ const Signup = () => {
 
         <div className="flex flex-col justify-center items-center">
           <Button type="submit" className={''}>
-            {isLoading ? 'creating acct...' : 'Sign Up'}
+            {isLoading ? 'Loading...' : 'Sign Up'}
           </Button>
           <p className="text-[#E0E0E0] mt-6">
             Already have an account?{' '}

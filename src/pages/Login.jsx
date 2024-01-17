@@ -37,7 +37,6 @@ const Login = () => {
     try {
       setIsLoading(true);
       const response = await axios.post(`${url}/users/login`, data);
-      console.log('login', response.data);
 
       const { accessToken, user } = response.data;
 
@@ -49,11 +48,11 @@ const Login = () => {
 
         setIsLoading(false);
         navigate('/lms/dashboard');
-      } else {
-        toast.error('Login failed.');
       }
     } catch (error) {
-      toast.error('login failed. Please try again.');
+      toast.error(error.response.data.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
